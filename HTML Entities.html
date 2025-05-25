@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Entities - الكيانات المحجوزة</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .section {
+            padding: 30px;
+        }
+        
+        .section-title {
+            background: linear-gradient(45deg, #e74c3c, #f39c12);
+            color: white;
+            padding: 15px 25px;
+            margin: -30px -30px 25px -30px;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        
+        .section:nth-child(3) .section-title {
+            background: linear-gradient(45deg, #f39c12, #e67e22);
+        }
+        
+        .section:nth-child(4) .section-title {
+            background: linear-gradient(45deg, #27ae60, #2ecc71);
+        }
+        
+        .section:nth-child(5) .section-title {
+            background: linear-gradient(45deg, #8e44ad, #9b59b6);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        
+        th {
+            background: linear-gradient(135deg, #34495e, #2c3e50);
+            color: white;
+            padding: 15px 10px;
+            text-align: center;
+            font-weight: bold;
+            border: 1px solid #ddd;
+        }
+        
+        td {
+            padding: 12px 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        tr:hover {
+            background-color: #e3f2fd;
+            transform: scale(1.01);
+        }
+        
+        .entity-code {
+            font-family: 'Courier New', monospace;
+            background: #f1f2f6;
+            padding: 5px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .result {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #e74c3c;
+        }
+        
+        .meaning {
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
+        
+        .arabic {
+            color: #2c3e50;
+            font-weight: bold;
+        }
+        
+        .english {
+            color: #7f8c8d;
+            font-style: italic;
+        }
+        
+        .search-box {
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .search-input {
+            padding: 12px 20px;
+            font-size: 16px;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            width: 300px;
+            max-width: 100%;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        
+        .search-input:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 10px rgba(52, 152, 219, 0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                border-radius: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+            
+            table {
+                font-size: 12px;
+            }
+            
+            th, td {
+                padding: 8px 5px;
+            }
+            
+            .search-input {
+                width: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔤 HTML Entities Reference</h1>
+            <p>دليل شامل للكيانات المحجوزة في HTML</p>
+        </div>
+        
+        <div class="search-box">
+            <input type="text" class="search-input" id="searchInput" placeholder="ابحث عن كيان معين...">
+        </div>
+        
+        <div class="section">
+            <div class="section-title">🔥 الكيانات الأكثر استخداماً - Most Common Entities</div>
+            <table id="commonTable">
+                <thead>
+                    <tr>
+                        <th>الرمز<br>Entity Code</th>
+                        <th>المعنى<br>Meaning</th>
+                        <th>النتيجة<br>Result</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="entity-code">&amp;lt;</span></td>
+                        <td class="meaning"><span class="arabic">أقل من</span><br><span class="english">Less than</span></td>
+                        <td class="result">&lt;</td>
+                    </tr>
+                    <tr>
+                        <td><span class="entity-code">&amp;gt;</span></td>
+                        <td class="meaning"><span class="arabic">أكبر من</span><br><span class="english">Greater than</span></td>
+                        <td class="result">&gt;</td>
+                    </tr>
+                    <tr>
+                        <td><span class="entity-code">&amp;amp;</span></td>
+                        <td class="meaning"><span class="arabic">علامة العطف</span><br><span class="english">Ampersand</span></td>
+                        <td class="result">&amp;</td>
+                    </tr>
+                    <tr>
+                        <td><span class="entity-code">&amp;quot;</span></td>
+                        <td class="meaning"><span class="arabic">علامة التنصيص</span><br><span class="english">Quotation mark</span></td>
+                        <td class="result">&quot;</td>
+                    </tr>
+                    <tr>
+                        <td><span class="entity-code">&amp;apos;</span></td>
+                        <td class="meaning"><span class="arabic">فاصلة علوية</span><br><span class="english">Apostrophe</span></td>
+                        <td class="result">&apos;</td>
+                    </tr>
+                    <tr>
+                        <td><span class="entity-code">&amp;nbsp;</span></td>
+                        <td class="meaning"><span class="arabic">مسافة غير منقسمة</span><br><span class="english">Non-breaking space</span></td>
+                        <td class="result">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td><span class="entity-code">&amp;copy;</span></td>
+                        <td class="meaning"><span class="arabic">حقوق النشر</span><br><span class="english">Copyright</span></td>
+                        <td class="result">&copy;</td>
+                    </tr>
+                    <tr>
+                        <td><span class="entity-code">&amp;reg;</span></td>
+                        <td class="meaning"><span class="arabic">علامة تجارية مسجلة</span><br><span class="english">Registered trademark</span></td>
+                        <td class="result">&reg;</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">💰 الرموز والعملات - Symbols & Currency</div>
+            <table id="symbolsTable">
+                <thead>
+                    <tr>
+                        <th>الرمز<br>Entity Code</th>
+                        <th>المعنى<br>Meaning</th>
+                        <th>النتيجة<br>Result</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="entity-code">&amp;euro;</span></td>
+                        <td class="meaning"><span class="arabic">اليورو</span><br><span class="english">Euro</span></td>
+                        <td class="result">&euro;</td>
+                    </tr>
+                    <tr>
+                        <td><span class="entity-code">&amp;pound;</span></td>
+                        <td class="meaning"><span class="arabic">الجنيه الإسترليني</span><br><span class="english">Pound sterling</span></td>
+                        <td class="result">&pound;</td>
+                    </tr>
+                    <tr>
+                        <td><span class="entity-code">&amp;yen;</span></td>
+                        <td class="meaning"><span class="arabic">الين الياباني</span><br><span class="english">Japanese Yen</span></td>
+                        <td class="result">&yen;</td>
+                    </tr>
+                    <tr>
+                        <td><span class="entity-code">&amp;cent;</span></td>
+                        <td class="meaning"><span class="arabic">السنت</span><br><span class="english">Cent</span></td>
+                        <td class="result">&cent;</td>
+                    </tr>
+                    <tr>
+                        <td><span class="entity-code">&amp;trade;</span></td>
+                        <td class="meaning"><span class="arabic">علامة تجارية</span><br><span class="english">Trademark</span></td>
+                        <td class="result">&trade;</td>
+                    </tr>
+                    <tr>
+                        <td><span class="entity-code">&amp;hellip;</span></td>
+                        <td class="meaning"><span class="arabic">نقاط الحذف</span><br><span class="english">Horizontal ellipsis</span></td>
+                        <td class="result">&hellip;</td>
+                    </tr>
+                    <tr>
+                        <td><span class="entity-code">&amp;ndash;</span></td>
+                        <td class="meaning"><span class="arabic">شرطة متوسطة</span><br><span class="english">En dash</span></td>
+                        <td class="result">&ndash;</td>
+                    </tr>
+                    <tr>
+                        <td><span class="entity-code">&amp;mdash;</span></td>
+                        <td class="meaning"><span class="arabic">شرطة طويلة</span><br><span class="english">Em dash</span></td>
+                        <td class="result">&mdash;</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">🔣 الرموز الرياضية - Mathematical Symbols</div>
+            <table id="mathTable">
+                <thead>
+                    <tr>
+                        <th>الرمز<br>Entity Code</th>
+                        <th>المعنى<br>Meaning</th>
+                        <th>النتيجة<br>Result</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="entity-code">&amp;times;</span></td>
+                        <td class="meaning"><span class="arabic">ضرب</span><br><span class="english">Multiplication</span></td>
+                        <td class="result">&times;</td>
+                    </tr>
+                    <tr>
+                        <td><span class="entity-code">&amp;divide;</span></td>
+                        <td class="meaning"><span class="arabic">قسمة</span><br><span class="english">Division</span></td>
+                        <td class="result">&divide;</td>
+                    </tr>
+                    <tr>
+                        <td><span class="entity-code">&amp;plusmn;</span></td>
+                        <td class="meaning"><span class="arabic">زائد أو ناقص</span><br><span class="english">Plus minus</span></td>
+                        <td class="result">&plusmn;</td>
+                    </tr>
+                    <tr>
+                        <td><span class="entity-code">&amp;sup1;</span></td>
+                        <td class="meaning"><span class="arabic">أس واحد</span><br><span class="english">Superscript 1</span></td>
+                        <td class="result">&sup1;</td>
+                    </tr>
+                    <tr>
+                        <td><span class="entity-code">&amp;sup2;</span></td>
+                        <td class="meaning"><span class="arabic">أس اثنان</span><br><span class="english">Superscript 2</span></td>
+                        <td class="result">&sup2;</td>
+                    </tr>
+                    <tr>
+                        <td><span class="entity-code">&amp;sup3;</span></td>
+                        <td class="meaning"><span class="arabic">أس ثلاثة</span><br><span class="english">Superscript 3</span></td>
+                        <td class="result">&sup3;</td>
+                    </tr>
+                    <tr>
+                        <td><span class="entity-code">&amp;frac14;</span></td>
+                        <td class="meaning"><span class="arabic">ربع</span><br><span class="english">One quarter</span></td>
+                        <td class="result">&frac14;</td>
+                    </tr>
+                    <tr>
+                        <td><span class="entity-code">&amp;frac12;</span></td>
+                        <td class="meaning"><span class="arabic">نصف</span><br><span class="english">One half</span></td>
+                        <td class="result">&frac12;</td>
+                    </tr>
+                    <tr>
+                        <td><span class="entity-code">&amp;frac34;</span></td>
+                        <td class="meaning"><span class="arabic">ثلاثة أرباع</span><br><span class="english">Three quarters</span></td>
+                        <td class="result">&frac34;</td>
+                    </tr>
+                    <tr>
+                        <td><span class="entity-code">&amp;infin;</span></td>
+                        <td class="meaning"><span class="arabic">ما لا نهاية</span><br><span class="english">Infinity</span></td>
+                        <td class="result">&infin;</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">🌐 الكيانات الأقل استخداماً - Less Common Entities</div>
+            <table id="lessCommonTable">
+                <thead>
+                    <tr>
+                        <th>الرمز<br>Entity Code</th>
+                        <th>المعنى<br>Meaning</th>
+                        <th>النتيجة<br>Result</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="entity-code">&amp;sect;</span></td>
+                        <td class="meaning"><span class="arabic">علامة القسم</span><br><span class="english">Section sign</span></td>
+                        <td class="result">&sect;</td>
+                    </tr>
+                    <tr>
+                        <td><span class="entity-code">&amp;para;</span></td>
+                        <td class="meaning"><span class="arabic">علامة الفقرة</span><br><span class="english">Paragraph sign</span></td>
+                        <td class="result">&para;</td>
+                    </tr>
+                    <tr>
+                        <td><span class="entity-code">&amp;dagger;</span></td>
+                        <td class="meaning"><span class="arabic">خنجر</span><br><span class="english">Dagger</span></td>
+                        <td class="result">&dagger;</td>
+                    </tr>
+                    <tr>
+                        <td><span class="entity-code">&amp;Dagger;</span></td>
+                        <td class="meaning"><span class="arabic">خنجر مزدوج</span><br><span class="english">Double dagger</span></td>
+                        <td class="result">&Dagger;</td>
+                    </tr>
+                    <tr>
+                        <td><span class="entity-code">&amp;bull;</span></td>
+                        <td class="meaning"><span class="arabic">نقطة سوداء</span><br><span class="english">Bullet</span></td>
+                        <td class="result">&bull;</td>
+                    </tr>
+                    <tr>
+                        <td><span class="entity-code">&amp;permil;</span></td>
+                        <td class="meaning"><span class="arabic">في الألف</span><br><span class="english">Per mille</span></td>
+                        <td class="result">&permil;</td>
+                    </tr>
+                    <tr>
+                        <td><span class="entity-code">&amp;lsaquo;</span></td>
+                        <td class="meaning"><span class="arabic">علامة اقتباس يسار</span><br><span class="english">Left single angle quote</span></td>
+                        <td class="result">&lsaquo;</td>
+                    </tr>
+                    <tr>
+                        <td><span class="entity-code">&amp;rsaquo;</span></td>
+                        <td class="meaning"><span class="arabic">علامة اقتباس يمين</span><br><span class="english">Right single angle quote</span></td>
+                        <td class="result">&rsaquo;</td>
+                    </tr>
+                    <tr>
+                        <td><span class="entity-code">&amp;spades;</span></td>
+                        <td class="meaning"><span class="arabic">ورقة الحفار</span><br><span class="english">Spades suit</span></td>
+                        <td class="result">&spades;</td>
+                    </tr>
+                    <tr>
+                        <td><span class="entity-code">&amp;clubs;</span></td>
+                        <td class="meaning"><span class="arabic">ورقة البستوني</span><br><span class="english">Clubs suit</span></td>
+                        <td class="result">&clubs;</td>
+                    </tr>
+                    <tr>
+                        <td><span class="entity-code">&amp;hearts;</span></td>
+                        <td class="meaning"><span class="arabic">ورقة القلب</span><br><span class="english">Hearts suit</span></td>
+                        <td class="result">&hearts;</td>
+                    </tr>
+                    <tr>
+                        <td><span class="entity-code">&amp;diams;</span></td>
+                        <td class="meaning"><span class="arabic">ورقة الديناري</span><br><span class="english">Diamonds suit</span></td>
+                        <td class="result">&diams;</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <script>
+        // البحث في الجداول
+        document.getElementById('searchInput').addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase().trim();
+            const tables = ['commonTable', 'symbolsTable', 'mathTable', 'lessCommonTable'];
+            
+            tables.forEach(tableId => {
+                const table = document.getElementById(tableId);
+                const rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+                
+                Array.from(rows).forEach(row => {
+                    const entityCode = row.cells[0].textContent.toLowerCase();
+                    const meaning = row.cells[1].textContent.toLowerCase();
+                    const result = row.cells[2].textContent.toLowerCase();
+                    
+                    if (entityCode.includes(searchTerm) || 
+                        meaning.includes(searchTerm) || 
+                        result.includes(searchTerm)) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // تأثير التحريك عند التمرير
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeIn 0.6s ease-out';
+                }
+            });
+        });
+        
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+        
+        // إضافة CSS للتحريك
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
